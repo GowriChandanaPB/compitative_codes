@@ -70,3 +70,28 @@ class Solution {
         return n;
     }
 }
+
+
+//The Celebrity Problem
+
+class Solution {
+    public int celebrity(int mat[][]) {
+        // code here
+        int knowme[] = new int[mat.length];
+        int iknow[] = new int[mat.length];
+        for(int i=0;i<mat.length;i++){
+            for(int j=0;j<mat[0].length;j++){
+                if(mat[i][j] == 1){
+                    iknow[i]++;
+                    knowme[j]++;
+                }
+            }
+        }
+        for(int i=0;i<mat.length;i++){
+            if(knowme[i] == mat.length && iknow[i] == 1) return i;
+        }
+        
+        return -1;
+    }
+}
+
