@@ -47,7 +47,7 @@ class Solution {
 }
 
 
-//Stack permutations check if an array is stack permutation of other
+//Longest Valid String
 
 class Solution {
     static int findMaxLen(String S) {
