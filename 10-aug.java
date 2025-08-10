@@ -1,5 +1,4 @@
-//6. Design Stack with Middle Operation
-
+//Design Stack with Middle Operation
 
 class Solution {
     // Function to delete middle element of a stack.
@@ -10,7 +9,8 @@ class Solution {
     }
 }
 
-//4.Queue Reversal
+
+//Queue Reversal
 
 class Solution {
     public Queue<Integer> reverseQueue(Queue<Integer> queue) {
@@ -23,5 +23,25 @@ class Solution {
         }
 
         return queue;
+    }
+}
+
+
+//Stack Permutation
+
+import java.util.Stack;
+class Solution {
+    public boolean checkPerm(int[] a, int[] b) {
+        // code here
+        int k = 0;
+        Stack<Integer> stk = new Stack<>();
+        for(int i=0; i<a.length; i++){
+            stk.push(a[i]);
+            while(!stk.isEmpty() && stk.peek()==b[k]){
+                stk.pop();
+                k++;
+            }
+        }
+        return k==b.length;
     }
 }
