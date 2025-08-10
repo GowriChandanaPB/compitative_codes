@@ -45,3 +45,28 @@ class Solution {
         return k==b.length;
     }
 }
+
+
+//Stack permutations check if an array is stack permutation of other
+
+class Solution {
+    static int findMaxLen(String S) {
+        int n=0;
+        Stack<Integer> stack=new Stack<>();
+        stack.push(-1);
+        for(int i=0;i<S.length();i++){
+            char ch=S.charAt(i);
+            if(ch=='('){
+                stack.push(i);
+            } else {
+                stack.pop();
+                if(stack.isEmpty()){
+                    stack.push(i);
+                } else {
+                    n=Math.max(n,i-stack.peek());
+                }
+            }
+        }
+        return n;
+    }
+}
