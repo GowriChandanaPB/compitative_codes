@@ -22,3 +22,25 @@ class Solution {
         return count;
     }
 }
+
+
+//Greedy algorithm to find minimum number of coins
+
+class Solution {
+    static List<Integer> minPartition(int N) {
+        // code here
+        int[] notes = new int[]{1,2,5,10,20,50,100,200,500,2000};
+        List<Integer> res = new ArrayList<>();
+        int k = notes.length - 1;
+        while(N > 0){
+            while(N < notes[k]){
+                k--;
+            }
+            while(N >= notes[k] && N > 0){
+                N -= notes[k];
+                res.add(notes[k]);
+            }
+        }
+        return res;
+    }
+}
