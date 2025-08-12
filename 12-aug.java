@@ -67,3 +67,19 @@ class Solution {
         return sum;
     }
 }
+
+
+//Minimum sum absolute difference pairs two arrays
+
+class Solution {
+    long findMinSum(int[] A, int[] B, int N) {
+        Arrays.sort(A);
+        Arrays.sort(B);
+        
+        long diff = 0;
+        for(int i=0; i<N; i++){
+            diff += Math.abs(A[i]-B[i]);
+        }
+        return diff;
+    }
+}
