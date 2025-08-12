@@ -1,7 +1,3 @@
-
-
-
-
 //Activity selection problem greedy algo
 
 
@@ -85,5 +81,34 @@ class Solution {
             diff += Math.abs(A[i]-B[i]);
         }
         return diff;
+    }
+}
+
+
+//Find maximum equal sum of every three stacks
+
+class Solution {
+    public static int maxEqualSum(int N1,int N2,int N3, int[] S1, int[] S2, int[] S3) {
+        // code here
+    int sum1 = Arrays.stream(S1).sum();
+        int sum2 = Arrays.stream(S2).sum();
+        int sum3 = Arrays.stream(S3).sum();
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+        while (i < S1.length && j < S2.length && k < S3.length) {
+            if (sum1 == sum2 && sum2 == sum3) {
+                return sum1;
+            }
+            if (sum1 >= sum2 && sum1 >= sum3) {
+                sum1 -= S1[i++];
+            } else if (sum2 >= sum1 && sum2 >= sum3) {
+                sum2 -= S2[j++];
+            } else if (sum3 >= sum1 && sum3 >= sum2) {
+                sum3 -= S3[k++];
+            }
+        }
+        return 0;
     }
 }
