@@ -44,3 +44,26 @@ class Solution {
         return res;
     }
 }
+
+
+//Minimum sum two numbers formed digits array-2
+
+class Solution {
+
+    public static long minSum(int arr[], int n) {
+        // Your code goes here
+        Arrays.sort(arr);
+        long d1 = 0;
+        long d2 = 0;
+        for(int i=0; i<arr.length; i=i+2){
+            if(i==arr.length-1){
+                d1 = 10 * d1 + arr[i];
+            } else {
+                d1 = 10 * d1 + arr[i];
+                d2 = 10 * d2 + arr[i+1];
+            }
+        }
+        long sum = d1 + d2;
+        return sum;
+    }
+}
