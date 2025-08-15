@@ -125,3 +125,27 @@ class Solution {
         
     }
 }
+
+
+// 7. Right View of Binary Tree
+
+class Solution {
+   ArrayList<Integer> rightView(Node root) {
+        ArrayList<Integer>list=new ArrayList<>();
+        leftV(root,list,0);
+        return list;
+        
+    }
+    
+    public static void leftV(Node root,ArrayList<Integer> list,int level){
+        if(root==null){
+            return;
+        }
+        if(level==list.size()){
+            list.add(root.data);
+        }
+        leftV(root.right,list,level+1);
+        leftV(root.left,list,level+1);
+        
+    }
+}
