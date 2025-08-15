@@ -23,3 +23,29 @@ class Solution {
         return maxValue;
     }
 }
+
+
+//2. Find smallest number with given number of digits and digit sum
+
+class Solution {
+    public String smallestNumber(int s, int d) {
+        // code here
+        if(s < 1 || s > d*9){
+            return "-1";
+        }
+        String str = "";
+        int p = s;
+        int q = 1;
+        while(q <= 9){
+            if(p-q <= (d-1)*9){
+                str += q;
+                d--;
+                p = p-q;
+                q = -1;
+            }
+            if(d==0) break;
+            q++;
+        }
+        return str;
+    }
+}
