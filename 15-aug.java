@@ -9,3 +9,28 @@ class Solution {
         return res;
     }
 }
+
+//2.Reverse Level Order Traversal
+
+class Tree {
+    public ArrayList<Integer> reverseLevelOrder(Node root) {
+        // code here
+        int level = 0;
+        ArrayList<Integer> ans = new ArrayList<>();
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        
+        while(!q.isEmpty()){
+            Node temp = q.remove();
+            ans.add(temp.data);
+            if(temp.right != null){
+                q.add(temp.right);
+            }
+            if (temp.left != null){
+                q.add(temp.left);
+            }
+        }
+        Collections.reverse(ans);
+        return ans;
+    }
+}
