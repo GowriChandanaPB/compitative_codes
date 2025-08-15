@@ -49,3 +49,31 @@ class Solution {
         return str;
     }
 }
+
+
+
+// 3. Maximize sum of consecutive differences circular-array
+
+class Solution {
+    public long maxSum(Long[] arr) {
+        // code here
+        int n = arr.length;
+        Arrays.sort(arr);
+        int i = 0;
+        int j = n-1;
+        long sum = 0;
+        int k = 0;
+        
+        while(i < j){
+            sum += Math.abs(arr[i] - arr[j]);
+            if(k == 0){
+                i++;
+            } else {
+                j--;
+            }
+            k = 1 - k;
+        }
+        sum += Math.abs(arr[0] - arr[i]);
+        return sum;
+    }
+}
