@@ -10,6 +10,7 @@ class Solution {
     }
 }
 
+
 //2.Reverse Level Order Traversal
 
 class Tree {
@@ -32,5 +33,22 @@ class Tree {
         }
         Collections.reverse(ans);
         return ans;
+    }
+}
+
+
+// 3. Subtree of Another Tree
+
+class Solution {
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        String subStr = serialize(subRoot);
+        String rootStr = serialize(root);
+        return rootStr.contains(subStr);
+    }
+     private String serialize(TreeNode node) {
+        if (node == null) {
+            return ",#";
+        }
+        return "," + node.val + serialize(node.left) + serialize(node.right);
     }
 }
