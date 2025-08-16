@@ -177,3 +177,37 @@ class Solution {
 
 // 8. Minimum swap required to convert binary tree to binary search tree
 
+class Solution {
+    public static int minSwaps(int n, int[] arr) {
+        List<Integer> list = new ArrayList<>();
+        inOrder(arr, list, n , 0);
+        return minSwap(n, list);
+    }
+    static void inOrder(int[] arr, List<Integer> list, int n, int index){
+        if(index>=n){
+            return;
+        }
+        inOrder(arr, list, n, 2*index+1);
+        list.add(arr[index]);
+        inOrder(arr, list, n, 2*index+2);
+    }
+    static int minSwap(int n, List<Integer> list){
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> arr = new ArrayList<>(list);
+        Collections.sort(arr);
+        for(int i=0;i<list.size();i++){
+            map.put(list.get(i),i);
+        }
+        int count =0;
+        for(int i=0;i<list.size();i++){
+            int x = list.get(i);
+            if(list.get(i)!=arr.get(i)){
+                count++;
+                Collections.swap(list, i, map.get(arr.get(i)));
+                map.put(x, map.get(arr.get(i)));
+                map.put(arr.get(i), i);
+            }
+        }
+        return count;
+    }
+}
