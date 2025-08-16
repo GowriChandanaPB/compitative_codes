@@ -117,3 +117,30 @@ class Solution {
     }
 }
 
+
+// 6. Diagonal Traversal of Binary Tree 
+
+class Tree
+{
+     public ArrayList<Integer> diagonal(Node root)
+      {
+           //add your code here.
+           ArrayList<Integer> ans= new ArrayList<>();
+           if(root==null){
+               return ans;
+           }
+            Queue<Node> q = new LinkedList<>();
+            q.add(root);
+            while(!q.isEmpty()){
+                Node curr = q.poll();
+                while(curr!=null){
+                    ans.add(curr.data);
+                    if(curr.left!=null){
+                        q.add(curr.left);
+                    }
+                    curr = curr.right;
+                }
+            }
+            return ans;
+      }
+}
