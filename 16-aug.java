@@ -42,3 +42,21 @@ class Solution {
         return hig;
     }
 }
+
+
+// 3. Diameter of a Binary Tree
+
+class Solution {
+    private int height(Node root,int[] ans){
+        if(root==null)return 0;
+        int l=height(root.left,ans);
+        int r=height(root.right,ans);
+        ans[0]=Math.max(ans[0], l + r);
+        return Math.max(l, r)+1;
+    }
+    int diameter(Node root) {
+        int maxd[]=new int[1];
+        height(root,maxd);
+        return maxd[0];
+    }
+}
