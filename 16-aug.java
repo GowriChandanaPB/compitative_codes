@@ -25,3 +25,20 @@ class Solution {
         return root;
     }
 }
+
+
+// 2. Height of Binary Tree 
+
+class Solution {
+    // Function to find the height of a binary tree.
+    int height(Node node) {
+        // code here
+        if(node == null){
+            return -1;
+        }
+        int l = height(node.left);
+        int r = height(node.right);
+        int hig = 1 + Math.max(l, r);
+        return hig;
+    }
+}
