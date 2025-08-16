@@ -60,3 +60,34 @@ class Solution {
         return maxd[0];
     }
 }
+
+
+// 4. Top View of Binary Tree
+
+class Solution {
+    // Function to return a list of nodes visible from the top view
+    // from left to right in Binary Tree.
+    static ArrayList<Integer> topView(Node root) {
+        // code here
+        TreeMap<Integer, Integer[]> map = new TreeMap<>();
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        top(root, map, 0, 0);
+        for(Integer[] i: map.values()){
+            ans.add(i[1]);
+        }
+        return ans;
+    }
+    public static void top(Node root,TreeMap<Integer,Integer[]> map, int c,int r){
+        if(root==null){return;}
+        
+        map.putIfAbsent(c,new Integer[]{r,root.data});
+        if(map.get(c)[0]>r){
+            map.remove(c);
+            map.put(c,new Integer[]{r,root.data});
+        }
+        
+        top(root.left,map,c-1,r+1);
+        top(root.right,map,c+1,r+1);
+    }
+}
