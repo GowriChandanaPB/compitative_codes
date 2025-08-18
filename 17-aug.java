@@ -137,3 +137,20 @@ class Solution
        return root;
     }
 }
+
+
+// 7. Kth largest element in BST 
+
+class Solution {
+    int count = 0, ans = -1;
+    public int kthLargest(Node root, int k) {
+        if (root == null){
+            return -1;
+        }
+        kthLargest(root.right, k);  
+        count++;
+        if (count == k) ans = root.data;
+        kthLargest(root.left, k);    
+        return ans;
+    }
+}
