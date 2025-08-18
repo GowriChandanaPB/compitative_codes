@@ -171,3 +171,24 @@ class Solution {
         return valid(node.left, min, node.val) && valid(node.right, node.val, max);
     }    
 }
+
+
+// 9. Kth Smallest Element in a BST
+
+class Solution {
+    int position = 0;
+
+    public void inOrder(List<Integer> list, TreeNode node, int k) {
+        if (node == null)
+            return;
+        inOrder(list, node.left, k);
+        list.add(node.val);
+        inOrder(list, node.right, k);
+    }
+
+    public int kthSmallest(TreeNode root, int k) {
+        List<Integer> list=new ArrayList<>();
+        inOrder(list, root, k);
+        return list.get(k - 1);
+    }
+}
