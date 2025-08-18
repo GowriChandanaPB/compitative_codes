@@ -34,3 +34,20 @@ class BST {
         return search(root.right, x);
     }
 }
+
+
+// 3. Minimum element in BST 
+
+class Solution {
+    // Function to find the minimum element in the given BST.
+    int minValue(Node root) {
+        // code here
+        if(root == null){
+            return root.data;
+        }
+        while(root.left != null){
+            root = root.left;
+        }
+        return root.data;
+    }
+}
