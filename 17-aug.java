@@ -14,3 +14,23 @@ class Solution {
         return null;
     }
 }
+
+
+// 2. Binary Search Tree | Set 1 (Search and Insertion)
+
+class BST {
+    // Function to search a node in BST.
+    boolean search(Node root, int x) {
+        // Your code here
+        if(root == null){
+            return false;
+        }
+        if(root.data == x){
+            return true;
+        }
+        if(x < root.data){
+            return search(root.left, x);
+        }
+        return search(root.right, x);
+    }
+}
