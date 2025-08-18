@@ -92,3 +92,22 @@ class Solution {
     
     }
 }
+
+
+// 5. Check whether BST contains Dead End
+
+class Solution {
+    public boolean isDeadEnd(Node root) {
+        // Code here.
+        return end(root , 0 , Integer.MAX_VALUE);
+    }
+    public static boolean end(Node root , int min , int max){
+        if(root == null){
+            return false;
+        }
+        if(min+1 == root.data && max-1 == root.data){
+            return true;
+        }
+        return end(root.left , min , root.data) || end(root.right , root.data ,max);
+    }
+}
