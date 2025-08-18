@@ -111,3 +111,29 @@ class Solution {
         return end(root.left , min , root.data) || end(root.right , root.data ,max);
     }
 }
+
+
+// 6. Binary Tree to BST
+
+class Solution
+{
+    ArrayList<Integer> list = new ArrayList<>();
+    void inorder(Node root) {
+        if(root==null) return;
+          inorder(root.left);
+          list.add(root.data);
+          inorder(root.right);
+    }
+    void intact(Node root) {
+        if(root==null) return;
+          intact(root.left);
+          root.data=list.remove(0);
+          intact(root.right);
+    }
+    Node binaryTreeToBST(Node root) {
+       inorder(root);
+       Collections.sort(list);
+       intact(root);
+       return root;
+    }
+}
