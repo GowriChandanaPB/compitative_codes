@@ -33,7 +33,9 @@ private TreeNode findMin(TreeNode node){
 }
 
 
-// 2. class Solution {
+// 2. Flatten BST to sorted list
+
+class Solution {
     Node prev, head;
     public Node flattenBST(Node root) {
         if (root == null) return null;
