@@ -31,3 +31,18 @@ private TreeNode findMin(TreeNode node){
     return node;
 }
 }
+
+
+// 2. class Solution {
+    Node prev, head;
+    public Node flattenBST(Node root) {
+        if (root == null) return null;
+        flattenBST(root.left);
+        if (head == null) head = root;
+        if (prev != null) prev.right = root;
+        root.left = null;
+        prev = root;
+        flattenBST(root.right);
+        return head;
+    }
+}
