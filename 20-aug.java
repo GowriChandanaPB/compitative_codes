@@ -36,3 +36,31 @@ class Solution {
         }
     }
 }
+
+
+// 3. Populate Inorder Successor for all Nodes
+
+class Solution {
+    public void populateNext(Node root) {
+        // code here
+        List<Node> li = new ArrayList<>();
+        addNode(root,li);
+        
+        Node temp = new Node(-1);
+        li.add(temp);
+        
+        for(int i = 0;i<li.size()-2;i++){
+           li.get(i).next = li.get(i+1);
+        }
+        
+    }
+    
+    public Node addNode(Node node, List<Node> li){
+        if(node == null) return null;
+        
+        addNode(node.left,li);
+        li.add(node);
+        addNode(node.right,li);
+    return null;
+    }
+}
