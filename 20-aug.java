@@ -16,3 +16,23 @@ class Solution {
         return bst(pre, Integer.MAX_VALUE, new int[]{0});
     }
 }
+
+
+// 2. Count BST nodes that lie in a given range 
+
+class Solution {
+ int getCount(Node root,int l, int h)
+    {
+        //Your code here
+        
+        if(root == null) return 0;
+        
+        if(l <= root.data && root.data<=h){
+            return getCount(root.left, l, h) + getCount(root.right, l, h)+1;
+        }else if(root.data < l){
+            return getCount(root.right, l, h);
+        }else{
+            return getCount(root.left, l, h);
+        }
+    }
+}
