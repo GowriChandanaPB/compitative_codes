@@ -64,3 +64,32 @@ class Solution {
     return null;
     }
 }
+
+
+// 4. Replace every element
+
+
+class Solution {
+    public static ArrayList<Integer> findLeastGreater(int n, int[] arr) {
+        // code here
+        TreeSet<Integer> set = new TreeSet<Integer>();
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        
+        result.add(-1);
+        set.add(arr[n-1]);
+        for(int i=n-2;i>=0;i--){
+            if(arr[i]<set.first()){
+                result.add(set.first());
+            }
+            else if(arr[i]>=set.last()){
+                result.add(-1);
+            }
+            else{
+               result.add(set.higher(arr[i])); 
+            }
+            set.add(arr[i]);
+        }
+        Collections.reverse(result);
+        return result;
+    }
+}
