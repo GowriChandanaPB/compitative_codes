@@ -119,3 +119,33 @@ class Solution {
         
     }
 }
+
+
+// 5. K’th Smallest/Largest Element in Unsorted Array
+
+class Solution {
+    public static int kthSmallest(int[] arr, int k) {
+        int max = 0;
+         for(int i=0; i<arr.length; i++){
+             if(arr[i]>max){
+                 max=arr[i];
+             }
+         }
+         int[] ar = new int[max+1];
+         for(int i = 0; i<arr.length;i++){
+             ar[arr[i]]=arr[i];
+         }
+         int count = 0;
+         int res = 0;
+         for(int i = 0;i<ar.length;i++){
+             if(count==k){
+                 break;
+             }
+             if(ar[i]!=0){
+                 count++;
+                 res = ar[i];
+             }
+         }
+         return res;
+    }
+}
