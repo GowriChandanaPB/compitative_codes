@@ -51,16 +51,45 @@ class Solution {
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             list[entry.getValue()].add(entry.getKey());
         }
-        int[] result = new int[k];
+        int[] res = new int[k];
         int index = 0;
         for (int i = list.length - 1; i > 0 && index < k; i--) {
             for (int n : list[i]) {
-                result[index++] = n;
-                if (index == k) return result;
+                res[index++] = n;
+                if (index == k) return res;
             }
         }
 
-        return result;
+        return res;
+    }
+}
+
+
+// 3. k largest elements in an array
+
+import java.util.*;
+
+class Solution {
+    public ArrayList<Integer> kLargest(int[] arr, int k) {
+        // Your code here
+        for(int i = 0;i<arr.length;i++){
+            int v = arr[i];
+            int j = i-1;
+            while(j>=0 && arr[j]<v){
+                arr[j+1] = arr[j];
+                j = j-1;
+            }
+            arr[j+1] = v;
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        if(k>=1 && k<=arr.length){
+            for(int i=0;i<k;i++){
+            res.add(arr[i]);
+            }
+            return res;
+        }
+        
+        return res;
     }
 }
  
