@@ -149,3 +149,29 @@ class Solution {
          return res;
     }
 }
+
+
+// 6. Find the maximum repeating number in O(n) time and O(1) extra space
+
+class Solution {
+     int maxRepeating(int k, int[] arr) {
+       int[]a = new int[k];
+        for(Integer n: arr){
+            a[n]++;
+        }
+        int max = 0, min = k-1;
+        for(int i=0; i<k; i++){
+            if(a[i]>max){
+               
+                min = i;
+                max = a[i];
+                
+            }else if(a[i]!=0&&max==a[i]){
+                if(min>i){
+                    min = i;
+                }
+            }
+        }
+        return min;
+    }
+}
