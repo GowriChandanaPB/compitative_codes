@@ -15,7 +15,6 @@ class Solution {
             heapify(arr,i,0);
         }
     }
-
     public void heapify(int[] arr, int n, int i) {
         int largest = i;
         int left = 2*i+1;
@@ -59,7 +58,6 @@ class Solution {
                 if (index == k) return res;
             }
         }
-
         return res;
     }
 }
