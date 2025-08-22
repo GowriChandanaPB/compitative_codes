@@ -64,3 +64,32 @@ class Solution {
         return minCost;
     }
 }
+
+
+// 4. Merge K Sorted lists
+
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        ArrayList<Integer> allValue = new ArrayList<>();
+
+        for(ListNode list : lists) {
+            while(list != null) {
+              allValue.add(list.val);
+              list = list.next;
+            }
+        }       
+
+        Collections.sort(allValue);
+
+       ListNode sort = new ListNode(1);
+       ListNode dummy = sort;
+
+       for(int i=0;i<allValue.size();i++) {
+        dummy.next = new ListNode(allValue.get(i));
+        dummy = dummy.next;
+       }
+       sort = sort.next;
+            
+        return sort;
+    }
+}
