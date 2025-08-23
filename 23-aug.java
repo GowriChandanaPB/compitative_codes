@@ -44,8 +44,34 @@ class Solution {
         for(int j:adj.get(i)){
             if(!vis[j]){
                 rec(j,adj,vis,dfs);
-            }
-            
+            }    
         }
     }
 }
+
+
+// 3. Flood Fill Algorithm
+
+class Solution {
+    public void solve(int[][] image, int sr, int sc, int color, int orcolor){
+        if(sr < 0 || sc<0 || sr>= image.length || sc>= image[0].length){
+            return;
+        }
+        else if(image[sr][sc]!=orcolor){
+            return;
+        }
+        else if (image[sr][sc] == color) {
+            return;
+        }
+            image[sr][sc]=color;
+        solve(image , sr+1, sc ,color, orcolor);
+        solve(image , sr-1, sc ,color, orcolor);
+        solve(image , sr, sc+1 ,color, orcolor);
+        solve(image , sr, sc-1 ,color, orcolor);
+    }
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int orcolor = image[sr][sc];
+         solve(image , sr, sc ,color,orcolor);
+         return image;
+    }
+}     
