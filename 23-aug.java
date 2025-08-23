@@ -25,3 +25,27 @@ class Solution {
         return res;
     }
 }
+
+
+// 2. DFS
+
+class Solution {
+    // Function to return a list containing the DFS traversal of the graph.
+    public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        boolean[] vis=new boolean[adj.size()+1];
+        ArrayList<Integer> dfs=new ArrayList<>();
+        rec(0,adj,vis,dfs);
+        return dfs;
+    }
+    void rec(int i,ArrayList<ArrayList<Integer>> adj,boolean[] vis,ArrayList<Integer> dfs){
+        dfs.add(i);
+        vis[i]=true;
+        for(int j:adj.get(i)){
+            if(!vis[j]){
+                rec(j,adj,vis,dfs);
+            }
+            
+        }
+    }
+}
