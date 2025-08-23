@@ -75,3 +75,43 @@ class Solution {
          return image;
     }
 }     
+
+
+// 4. Detect cycle in a graph
+
+class Solution {
+    public boolean isCyclic(int V, int[][] edges) {
+        List<List<Integer>> adj = new ArrayList<>();
+        int[] indeg = new int[V];
+        Queue<Integer> q = new LinkedList<>();
+        
+        for (int i=0;i<V;i++)
+            adj.add(new ArrayList<>());
+        
+        for (int[] edge: edges) {
+            int u = edge[0];
+            int v = edge[1];
+            adj.get(u).add(v);
+            indeg[v]++;
+        }
+        
+        for (int i=0;i<V;i++)
+            if (indeg[i] == 0)
+                q.add(i);
+                
+        while (!q.isEmpty()) {
+            int curr = q.poll();
+            for (int ngbr: adj.get(curr)) {
+                indeg[ngbr]--;
+                if (indeg[ngbr] == 0)
+                    q.add(ngbr);
+            }
+        }
+        
+        for (int i=0;i<V;i++)
+            if (indeg[i] > 0)
+                return true;
+                
+        return false;
+    }
+}
