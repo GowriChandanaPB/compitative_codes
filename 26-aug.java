@@ -73,3 +73,22 @@ class Solution {
         return -1;
     }
 }
+
+
+// 3. Clone graph
+
+class Solution {
+    HashMap<Integer, Node> nodes = new HashMap<>();
+    public Node cloneGraph(Node node) {
+        if (node == null) return null;
+        if (nodes.containsKey(node.val)) {
+            return nodes.get(node.val);
+        }
+        Node copyNode = new Node(node.val);
+        nodes.put(node.val, copyNode);
+        for (Node neighbor : node.neighbors) {
+            copyNode.neighbors.add(cloneGraph(neighbor));
+        }
+        return copyNode;
+    }
+}
