@@ -58,3 +58,49 @@ class Solution {
         return res;
     }
 }
+
+
+// 3. Minimum time taken by each job to be completed given by a Directed Acyclic Graph
+
+class Solution {
+    public static int [] minimumTime(int n,int m, int[][] edges) {
+        
+        int indeg[] = new int[n+1];
+        for(int i=0;i<edges.length;i++){
+            indeg[edges[i][1]]++;
+        }
+        Queue<Integer> q = new LinkedList<>();
+        int arr[] = new int[n+1];
+        
+        for(int i=1;i<=n;i++){
+            if(indeg[i]==0){
+                q.add(i);
+                arr[i] = 1;
+            }
+        }
+        
+        while(!q.isEmpty()){
+            int val = q.poll();
+            for(int i=0;i<edges.length;i++){
+                if(edges[i][0]>val){
+                    break;
+                }
+                if(edges[i][0] == val){
+                    indeg[edges[i][1]]--;
+                    if(indeg[edges[i][1]]==0){
+                        q.add(edges[i][1]);
+                        arr[edges[i][1]] = arr[val] + 1;
+                    } 
+                }
+
+            }
+        }
+        
+        int res[] = new int[n];
+        for(int i=0;i<n;i++){
+            res[i] = arr[i+1];
+        }
+        return res;
+        
+    }
+}
