@@ -78,3 +78,50 @@ class Solution {
         return -1;
     }
 }
+
+
+// 4. Kosaraju's Theorem
+
+class Solution{
+    
+    Stack<Integer> tSort;
+    public int kosaraju(int V, ArrayList<ArrayList<Integer>> adj){
+        tSort = new Stack<>();
+        boolean vis[]=new boolean[V];
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                dfs(adj,i,vis,true);
+            }
+        }
+        ArrayList<ArrayList<Integer>> transpose=new ArrayList<>();
+        for(int i=0;i<V;i++){
+            transpose.add(new ArrayList<>());
+        }
+        for(int i=0;i<V;i++){
+            for(Integer j:adj.get(i)){
+                transpose.get(j).add(i);
+            }
+        }
+        vis=new boolean[V];
+        int res=0;
+        while(!tSort.isEmpty()){
+            int pop=tSort.pop();
+            if(!vis[pop]){
+                res++;
+                dfs(transpose,pop,vis,false);
+            }
+        }
+        return res;
+    }
+    
+    public void dfs(ArrayList<ArrayList<Integer>> adj,int start,boolean vis[],boolean first_dfs){
+        vis[start]=true;
+        for(Integer nbr:adj.get(start)){
+            if(!vis[nbr]){
+                dfs(adj,nbr,vis,first_dfs);
+            }
+        }
+        if(first_dfs)   tSort.push(start);
+    }
+    
+}
