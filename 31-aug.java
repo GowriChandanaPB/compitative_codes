@@ -30,4 +30,63 @@ class Solution {
 }
 
 
-// 2. 
+// 2. Find if there is a path of more than k length from a source
+
+class Solution{
+    
+    boolean pathMoreThanK(int V, int E, int K, int[] A) {
+        HashMap<Integer, ArrayList<Integer[]>> graph = new HashMap<>();
+
+        for (int i = 0; i < V; i++) {
+            graph.put(i, new ArrayList<>());
+        }
+        for (int i = 0; i < A.length-1 ; i += 3) {
+
+            int a = A[i];
+            int b = A[i + 1];
+            int weight = A[i + 2];
+
+            Integer[] edge1 = new Integer[] { b, weight };
+            Integer[] edge2 = new Integer[]{ a , weight};
+
+            graph.get(a).add(edge1 );
+            graph.get(b).add( edge2 );
+        }
+        int start = A[A.length - 1];
+
+        boolean[] visited = new boolean[V];
+        int sumOfPath = 0;
+
+        boolean Found = dfs( start , sumOfPath, K , graph , visited );
+
+        if( Found ){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean dfs( int currentVertex , int sumOfPath , int K , HashMap<Integer,ArrayList<Integer[]>> graph , boolean[] visited ){
+
+        if( sumOfPath >= K ){
+            return true;
+        }
+        visited[ currentVertex ] = true;
+        for( Integer[] edge : graph.get( currentVertex) ){
+
+            int neighbour = (int)edge[0];
+            int weight = (int) edge[1];
+
+            if( visited[ neighbour] == false ){
+
+                boolean found = dfs( neighbour , sumOfPath+weight , K , graph , visited );
+                if( found ){
+                    return true;
+                }
+            }
+        }
+        visited[ currentVertex ] = false;
+        return false;
+
+    }
+    
+}
