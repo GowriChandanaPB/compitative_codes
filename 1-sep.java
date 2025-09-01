@@ -171,3 +171,7 @@ public class Solution {
         }
         return true;
     }
+}
+
+
+// 9. Longest Consecutive Sequence   
