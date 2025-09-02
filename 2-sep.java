@@ -70,3 +70,29 @@ class Solution {
          return count;
     }
 }
+
+// 5. Longest Consecutive Sequence
+
+public class Solution {
+    public int longestConsecutive(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        Arrays.sort(nums);
+        int res = 0, p = nums[0], q = 0, i = 0;
+
+        while (i < nums.length) {
+            if (p != nums[i]) {
+                p = nums[i];
+                q = 0;
+            }
+            while (i < nums.length && nums[i] == q) {
+                i++;
+            }
+            q++;
+            p++;
+            res = Math.max(res, q);
+        }
+        return res;
+    }
+}
