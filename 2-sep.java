@@ -54,3 +54,19 @@ class Solution {
         
     }
 }
+
+
+// 4. Count pairs with given sum
+
+class Solution {
+
+    int countPairs(int arr[], int target) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+         int count=0;
+         for(int i:arr){
+             count += map.getOrDefault(target-i,0);
+             map.put(i,map.getOrDefault(i,0)+1);
+         }
+         return count;
+    }
+}
