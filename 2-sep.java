@@ -96,3 +96,23 @@ public class Solution {
         return res;
     }
 }
+
+
+// 6. Valid Palindrome
+
+class Solution {
+    public boolean isPalindrome(String s) {
+        String low_s = s.toLowerCase();
+        String fin = low_s.replaceAll("[^a-z0-9]", "");
+        int left = 0;
+        int right = fin.length() - 1;
+        while (left < right){
+            if(fin.charAt(left)!=fin.charAt(right)){
+                return false;
+            } 
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
