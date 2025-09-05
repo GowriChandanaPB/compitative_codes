@@ -129,3 +129,25 @@ public class TimeMap {
     }
 }
 
+
+// 6. Median of Two Sorted Arrays
+
+public class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int len1 = nums1.length, len2 = nums2.length;
+        int[] merge = new int[len1 + len2];
+        System.arraycopy(nums1, 0, merge, 0, len1);
+        System.arraycopy(nums2, 0, merge, len1, len2);
+        Arrays.sort(merge);
+
+        int n = merge.length;
+        if (n % 2 == 0) {
+            return (merge[n / 2 - 1] + merge[n / 2]) / 2.0;
+        } else {
+            return merge[n / 2];
+        }
+    }
+}
+
+
+
