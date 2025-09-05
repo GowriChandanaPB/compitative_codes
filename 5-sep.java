@@ -67,3 +67,41 @@ public class Solution {
 
 
 // 4. Search in Rotated Sorted Array
+
+class Solution {
+    public int search(int[] nums, int target) {
+        int n = nums.length;
+        int l = 0, r = n - 1;
+
+        while (l < r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] > nums[r]) {
+                l = m + 1;
+            } else {
+                r = m;
+            }
+        }
+
+        int rot = l;
+        l = 0;
+        r = n - 1;
+
+        if (target >= nums[rot] && target <= nums[r]) {
+            l = rot;
+        } else {
+            r = rot;
+        }
+
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] == target) {
+                return m;
+            } else if (nums[m] < target) {
+                l = m + 1;
+            } else {
+                r = m - 1;
+            }
+        }
+        return -1;
+    }
+}
