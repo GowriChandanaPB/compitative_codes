@@ -39,3 +39,19 @@ class Solution {
         return maxProfit;
     }
 }
+
+
+// 3. Best Time to Buy and Sell Stock (method 2)
+
+public class Solution {
+    public int maxProfit(int[] prices) {
+        int maxP = 0;
+        int minBuy = prices[0];
+
+        for (int sell : prices) {
+            maxP = Math.max(maxP, sell - minBuy);
+            minBuy = Math.min(minBuy, sell);
+        }
+        return maxP;
+    }
+}
