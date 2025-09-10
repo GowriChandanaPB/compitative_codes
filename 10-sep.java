@@ -17,3 +17,53 @@ class Solution {
         return res;
     }
 }
+
+
+// 2. Permutation in String
+
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+        if (s1.length() > s2.length()) {
+            return false;
+        }
+
+        int[] s1Count = new int[26];
+        int[] s2Count = new int[26];
+        for (int i = 0; i < s1.length(); i++) {
+            s1Count[s1.charAt(i) - 'a']++;
+            s2Count[s2.charAt(i) - 'a']++;
+        }
+
+        int match = 0;
+        for (int i = 0; i < 26; i++) {
+            if (s1Count[i] == s2Count[i]) {
+                match++;
+            }
+        }
+
+        int l = 0;
+        for (int i = s1.length(); i < s2.length(); i++) {
+            if (match == 26) {
+                return true;
+            }
+
+            int idx = s2.charAt(i) - 'a';
+            s2Count[idx]++;
+            if (s1Count[idx] == s2Count[idx]) {
+                match++;
+            } else if (s1Count[idx] + 1 == s2Count[idx]) {
+                match--;
+            }
+
+            idx = s2.charAt(l) - 'a';
+            s2Count[idx]--;
+            if (s1Count[idx] == s2Count[idx]) {
+                match++;
+            } else if (s1Count[idx] - 1 == s2Count[idx]) {
+                match--;
+            }
+            l++;
+        }
+        return match == 26;
+    }
+}
