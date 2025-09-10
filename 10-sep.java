@@ -69,7 +69,7 @@ class Solution {
 }
 
 
-// 3. Minimum Window Substring.
+// 3. Minimum Window Substring
 
 class Solution {
     public String minWindow(String s, String t) {
