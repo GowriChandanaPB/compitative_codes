@@ -115,7 +115,7 @@ class Solution {
 }
 
 
-// 4. Sliding Window Maximum.
+// 4. Sliding Window Maximum
 
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
