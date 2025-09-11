@@ -137,3 +137,17 @@ class Solution {
     }
 }
 
+
+// 9. Valid Binary Search Tree
+
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        return dfs(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    public boolean dfs(TreeNode node, long minVal, long maxVal){
+        if(node == null) return true;
+        if(node.val <= minVal || node.val >= maxVal) return false;
+        return dfs(node.left, minVal, node.val) && dfs(node.right, node.val, maxVal);
+    }
+}
+
