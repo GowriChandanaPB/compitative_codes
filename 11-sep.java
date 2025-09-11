@@ -120,3 +120,20 @@ class Solution {
 
 // 8. Count Good Nodes in Binary Tree
 
+class Solution {
+    int count = 0;
+    public int goodNodes(TreeNode root) {
+        dfs(root, Integer.MIN_VALUE);
+        return count;
+    }
+    public void dfs(TreeNode node, int maxVal){
+        if(node == null) return;
+        if(node.val >= maxVal){
+            count++;
+            maxVal = node.val;
+        }
+        dfs(node.left, maxVal);
+        dfs(node.right, maxVal);
+    }
+}
+
