@@ -41,5 +41,42 @@ class Solution {
 
 // 3. Serialize and Deserialize Binary Tree
 
+class Codec {
 
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        List<String> res = new ArrayList<>();
+        dfsSerialize(root, res);
+        return String.join(",", res);
+    }
+
+    private void dfsSerialize(TreeNode node, List<String> res) {
+        if (node == null) {
+            res.add("N");
+            return;
+        }
+        res.add(String.valueOf(node.val));
+        dfsSerialize(node.left, res);
+        dfsSerialize(node.right, res);
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        String[] val = data.split(",");
+        int[] i = {0};
+        return dfsDeserialize(val, i);
+    }
+
+    private TreeNode dfsDeserialize(String[] val, int[] i) {
+        if (val[i[0]].equals("N")) {
+            i[0]++;
+            return null;
+        }
+        TreeNode node = new TreeNode(Integer.parseInt(val[i[0]]));
+        i[0]++;
+        node.left = dfsDeserialize(val, i);
+        node.right = dfsDeserialize(val, i);
+        return node;
+    }
+}
 
