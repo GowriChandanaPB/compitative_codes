@@ -23,3 +23,17 @@ class Solution {
 
 // 2. Binary Tree Maximum Path Sum
 
+class Solution {
+    public int maxPathSum(TreeNode root) {
+        int[] res = new int[]{root.val};
+        dfs(root, res);
+        return res[0];
+    }
+    private int dfs(TreeNode root, int[] res){
+        if(root == null) return 0;
+        int lmax = Math.max(dfs(root.left, res), 0);
+        int rmax = Math.max(dfs(root.right, res), 0);
+        res[0] = Math.max(res[0], root.val + lmax + rmax);
+        return root.val + Math.max(lmax, rmax);
+    }
+}
