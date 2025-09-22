@@ -42,3 +42,51 @@ class twoStacks {
         return arr[s2++];
     }
 }
+
+
+// 2.Evaluation of Postfix Expression
+
+class Solution {
+    public int evaluate(String[] arr) {
+        // code here
+        Stack<Integer> res = new Stack<Integer>();
+        for(int i=0; i<arr.length; i++){
+            switch (arr[i]){
+                case "+":
+                    if(res.size()>=2){
+                        int last = res.pop();
+                        int first = res.pop();
+                        res.push(first + last);
+                    }
+                    break;
+                    case "-":
+                        if(res.size()>=2){
+                            int last = res.pop();
+                            int first = res.pop();
+                            res.push(first - last);
+                        }
+                    break;
+                    case "*":
+                        if(res.size()>=2){
+                            int last= res.pop();
+                            int first = res.pop();
+                            res.push(first * last);
+                    }
+                    break;
+                    case "/":
+                        if(res.size()>=2){
+                            int last= res.pop();
+                            int first = res.pop();
+                            res.push(first / last);
+                    }
+                    break;
+                default:
+                    int temp = Integer.parseInt(arr[i]);
+                    res.push(temp);
+            }
+            
+        }
+        return res.pop();
+    }
+                        
+            } 
