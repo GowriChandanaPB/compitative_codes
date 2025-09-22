@@ -125,4 +125,18 @@ class MyStack {
 }
 
 
-// 
+// 4.Queue Reversal
+
+class Solution {
+    public Queue<Integer> reverseQueue(Queue<Integer> queue) {
+        Stack<Integer> stack = new Stack<>();
+        while (queue.size() > 0) {
+            stack.push(queue.poll());
+        }
+        while (stack.size() > 0) {
+            queue.add(stack.pop());
+        }
+
+        return queue;
+    }
+}
