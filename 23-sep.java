@@ -54,3 +54,27 @@ class Solution {
         backtrack(nums, target, cur, i + 1);
     }
 }
+
+
+// 3. Subsets II
+
+class Solution {
+    List<List<Integer>> res;
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        res = new ArrayList<List<Integer>>();
+        Arrays.sort(nums);
+        List<Integer> cur = new ArrayList();
+        backtrack(nums, cur, 0);
+        return res;
+    }
+
+    public void backtrack(int[] nums, List<Integer> cur, int i) {
+        res.add(new ArrayList(cur));
+        for (int j = i; j < nums.length; j++) {
+            if (j > i && nums[j] == nums[j - 1]) continue;
+            cur.add(nums[j]);
+            backtrack(nums, cur, j + 1);
+            cur.remove(cur.size() - 1);
+        }
+    }
+}
