@@ -172,3 +172,25 @@ class Solution {
 
 
 // 7. Reverse Nodes in K-Group 
+
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode temp = head;
+        int count = 0;
+        while (temp != null && count != k) {
+            temp = temp.next;
+            count++;
+        }
+        if (count == k) {
+            ListNode prev = reverseKGroup(temp, k);
+            while (count-- > 0) {
+                ListNode next = head.next;
+                head.next = prev;
+                prev = head;
+                head = next;
+            }
+            head = prev;
+        }
+        return head;
+    }
+}
