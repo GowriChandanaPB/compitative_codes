@@ -14,3 +14,6 @@ class Solution {
         return (int) rev;
     }
 }
+
+
+// 2. String to Integer (atoi)
