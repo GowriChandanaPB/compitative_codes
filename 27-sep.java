@@ -17,3 +17,26 @@ class KthLargest {
         return arr.get(arr.size() - K);
     }
 }
+
+
+// 2. Last Stone Weight
+
+class Solution {
+    public int lastStoneWeight(int[] stones) {
+        PriorityQueue<Integer> min = new PriorityQueue<>();
+        for (int s : stones) {
+            min.offer(-s);
+        }
+
+        while (min.size() > 1) {
+            int first = min.poll();
+            int second = min.poll();
+            if (second > first) {
+                min.offer(first - second);
+            }
+        }
+
+        min.offer(0);
+        return Math.abs(min.peek());
+    }
+}
