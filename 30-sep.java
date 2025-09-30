@@ -62,3 +62,16 @@ public class Solution {
         return res;
     }
 }
+
+
+// 4. Single Number
+
+public class Solution {
+    public int singleNumber(int[] nums) {
+        int res = 0;
+        for (int num : nums) {
+            res ^= num;
+        }
+        return res;
+    }
+}
