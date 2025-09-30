@@ -40,3 +40,6 @@ class MedianFinder {
         }
     }
 }
+
+
+// 3. 
