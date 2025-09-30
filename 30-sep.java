@@ -18,3 +18,25 @@ class Solution {
 }
 
 
+// 2. Find Median from Data Stream
+
+class MedianFinder {
+    public ArrayList<Integer> data;
+
+    public MedianFinder() {
+        data = new ArrayList<>();    
+    }
+    
+    public void addNum(int num) {
+        data.add(num);
+    }
+    
+    public double findMedian() {
+        Collections.sort(data);
+        if((data.size() & 1) == 1){
+            return data.get(data.size() / 2);
+        } else {
+            return (data.get(data.size() / 2) + data.get(data.size() / 2 - 1)) / 2.0;
+        }
+    }
+}
