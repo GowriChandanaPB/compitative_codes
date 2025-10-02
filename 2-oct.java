@@ -13,7 +13,7 @@ class Solution {
 
 // 2. Bit Manipulation
 
-public class Solution {
+class Solution {
     public int reverseBits(int n) {
         int res = 0;
         for (int i = 0; i < 32; i++) {
@@ -23,3 +23,6 @@ public class Solution {
         return res;
     }
 }
+
+
+// 3. Missing Number
