@@ -9,3 +9,6 @@ class Solution {
         return res;
     }
 }
+
+
+// 2. Bit Manipulation
