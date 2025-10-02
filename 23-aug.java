@@ -129,6 +129,7 @@ class Solution {
             adj.add(new ArrayList<>());
         }
         
+        
         for (int[] edge : edges) {
             int u = edge[0];
             int v = edge[1];
