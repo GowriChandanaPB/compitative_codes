@@ -25,3 +25,6 @@ class Solution {
         return res.toArray(new int[res.size()][]);
     }
 }
+
+
+// 2. Merge Intervals
