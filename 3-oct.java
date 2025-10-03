@@ -94,3 +94,32 @@ class Solution {
 
 
 // 5. Meeting Rooms II
+
+class Solution {
+    public int minMeetingRooms(List<Interval> intervals) {
+        int n = intervals.size();
+        int[] p = new int[n];
+        int[] q = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            p[i] = intervals.get(i).p;
+            q[i] = intervals.get(i).q;
+        }
+
+        Arrays.sort(p);
+        Arrays.sort(q);
+
+        int res = 0, count = 0, s = 0, e = 0;
+        while (s < n) {
+            if (p[s] < q[e]) {
+                s++;
+                count++;
+            } else {
+                e++;
+                count--;
+            }
+            res = Math.max(res, count);
+        }
+        return res;
+    }
+}
