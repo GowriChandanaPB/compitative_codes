@@ -48,3 +48,7 @@ class PrefixTree {
         return true;
     }
 }
+
+
+// 2. Design Add and Search Word Data Structure
+
