@@ -35,3 +35,35 @@ class Solution {
         return sb.length() == 0 ? "0" : sb.toString();
     }
 }
+
+
+// 3. Detect Squares
+
+class CountSquares {
+    Map<List<Integer>, Integer> count;
+    List<List<Integer>> pts;
+    public CountSquares() {
+        count = new HashMap<>();
+        pts = new ArrayList<>();
+    }
+    
+    public void add(int[] point) {
+        List<Integer> p = Arrays.asList(point[0], point[1]);
+        count.put(p, count.getOrDefault(p, 0) + 1);
+        pts.add(p);
+    }
+    
+    public int count(int[] point) {
+        int res = 0;
+        int px = point[0], py = point[1];
+        for (List<Integer> pt : pts) {
+            int x = pt.get(0), y = pt.get(1);
+            if (Math.abs(py - y) != Math.abs(px - x) || x == px || y == py) {
+                continue;
+            }
+            res += count.getOrDefault(Arrays.asList(x, py), 0) *
+                   count.getOrDefault(Arrays.asList(px, y), 0);
+        }
+        return res;
+    }
+}
