@@ -43,3 +43,23 @@ class Solution {
 }
 
 
+// 3. Remove Nth Node From End of List
+
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode temp = new ListNode(0, head);
+        ListNode p = temp;
+        ListNode q = head;
+        while(n>0){
+            q = q.next;
+            n--;
+        }
+        while(q != null){
+            p = p.next;
+            q = q.next;
+        }
+        p.next = p.next.next;
+        return temp.next;
+    }
+}
+
