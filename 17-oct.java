@@ -56,3 +56,36 @@ class Solution {
         return false;
     }
 }
+
+
+// 4. Longest Increasing Path in a Matrix 
+
+public class Solution {
+    int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+    private int dfs(int[][] matrix, int r, int c, int prevVal) {
+        int row = matrix.length, col = matrix[0].length;
+        if (r < 0 || r >= row || c < 0 ||
+            c >= col || matrix[r][c] <= prevVal) {
+            return 0;
+        }
+
+        int res = 1;
+        for (int[] d : dir) {
+            res = Math.max(res, 1 + dfs(matrix, r + d[0],
+                                    c + d[1], matrix[r][c]));
+        }
+        return res;
+    }
+
+    public int longestIncreasingPath(int[][] matrix) {
+        int row = matrix.length, col = matrix[0].length;
+        int l = 0;
+        for (int r = 0; r < row; r++) {
+            for (int c = 0; c < col; c++) {
+                l = Math.max(l, dfs(matrix, r, c, Integer.MIN_VALUE));
+            }
+        }
+        return l;
+    }
+}
