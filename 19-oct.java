@@ -66,3 +66,21 @@ class Solution {
         return max_profit;
     }
 }
+
+
+// 5. Valid Palindrome
+
+class Solution {
+    public boolean isPalindrome(String s) {
+        String low = s.toLowerCase();
+        String fin_str = s.replaceAll("[^a-z0-9]", "");
+        int left = 0;
+        int right = fin_str.length();
+        while(left < right){
+            if(fin_str.charAt(left) != fin_str.charAt(right)) return false;
+            left++;
+            right--;
+        }        
+        return true;
+    }
+}
