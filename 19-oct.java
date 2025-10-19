@@ -113,3 +113,22 @@ class Solution {
         return Arrays.equals(sarr, tarr);
     }
 }
+
+
+// 8. binary Search
+
+class Solution {
+    public int search(int[] nums, int target) {
+        if (nums == null) return -1;
+        int l = 0;
+        int h = nums.length - 1;
+        while (l <= h) {
+            int m = l + (h - l) / 2;  
+            int m_num = nums[m];
+            if (target == m_num) return m;
+            if (target < m_num) h = m - 1;
+            else l = m + 1;
+        }
+        return -1;
+    }
+}
