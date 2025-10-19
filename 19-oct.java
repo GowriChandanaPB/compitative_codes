@@ -84,3 +84,18 @@ class Solution {
         return true;
     }
 }
+
+
+// 6. Invert Binary Tree
+
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null) return null;
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        root.left = invertTree(right);
+        root.right = invertTree(left);
+        return root;
+
+    }
+}
