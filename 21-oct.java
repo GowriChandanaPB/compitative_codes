@@ -97,3 +97,21 @@ class Solution {
         return curr;
     }
 }
+
+
+// 6. Longest Palindrome 
+
+class Solution {
+    public int longestPalindrome(String s) {
+        HashSet<Character> map = new HashSet<>();
+        int length = 0;
+        for (char c : s.toCharArray()) {
+            if (map.contains(c)) {
+                map.remove(c);
+                length += 2;
+            } else map.add(c);
+        }
+        if (!map.isEmpty()) length += 1;
+        return length;
+    }
+}
