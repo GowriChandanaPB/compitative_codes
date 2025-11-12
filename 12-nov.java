@@ -39,3 +39,26 @@ class Solution {
         return copyNode;
     }
 }
+
+
+// 3. Evaluate Reverse Polish Notation
+
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> stk = new Stack<>();
+        for(String c : tokens){
+            if(c.equals("+")) stk.push(stk.pop() + stk.pop());
+            else if(c.equals("-")){
+                int sec = stk.pop();
+                int fir = stk.pop();
+                stk.push(fir - sec);
+            } else if (c.equals("*")) stk.push(stk.pop() * stk.pop());
+             else if(c.equals("/")){
+                int sec = stk.pop();
+                int fir = stk.pop();
+                stk.push(fir / sec);
+            } else stk.push(Integer.parseInt(c));
+        }
+        return stk.peek();
+    }
+}
