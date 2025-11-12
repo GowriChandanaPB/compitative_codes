@@ -165,3 +165,25 @@ class Solution {
         return minCoins[amount] != amount + 1 ? minCoins[amount] : -1;        
     }
 }
+
+
+// 7. Product of Array Except Self
+
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int n = nums.length; 
+        int left = 1;
+        int right = 1;
+        int [] sum = new int[n];
+
+        for(int i=n-1; i>=0; i--){
+            sum[i] = right;
+            right = right*nums[i];
+        }
+        for(int i=0; i<n; i++){
+            sum[i] = sum[i] * left;
+            left = left * nums[i];
+        }
+        return sum;
+    }
+}
