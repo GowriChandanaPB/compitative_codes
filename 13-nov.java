@@ -117,7 +117,6 @@ class Solution {
 
 // 5. Permutations
 
-
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
@@ -144,5 +143,24 @@ class Solution {
             res.addAll(perms);
         }
         return res;        
+    }
+}
+
+
+// 6. Merge Intervals
+
+public class Solution {
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        List<int[]> res = new ArrayList<>();
+        res.add(intervals[0]);
+        for (int[] i : intervals) {
+            int p = i[0];
+            int q = i[1];
+            int lastEnd = res.get(res.size() - 1)[1];
+            if (p <= lastEnd) res.get(res.size() - 1)[1] = Math.max(lastEnd, q);
+            else res.add(new int[]{p, q});
+        }
+        return res.toArray(new int[res.size()][]);
     }
 }
