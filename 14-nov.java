@@ -92,3 +92,55 @@ class TimeMap {
         return treeMap.get(floor);
     }
 }
+
+
+// 5. Accounts Merge
+
+class Solution {
+    public List<List<String>> accountsMerge(List<List<String>> accounts) {
+        Map<String, String> owners = new HashMap<>();
+        Map<String, String> parents = new HashMap<>();
+        Map<String, TreeSet<String>> unions = new HashMap<>(); 
+        for (List<String> account: accounts) {
+            for (int i = 1; i<account.size(); i++) {
+                String owner = account.get(0);
+                String email = account.get(i);
+                parents.put(email, email);
+                owners.put(email, owner);
+            }
+        }
+        for (List<String> account: accounts) {
+            String p1 = find(parents, account.get(1));
+            for (int i = 2; i<account.size(); i++) {
+                String p2 = find(parents, account.get(i));
+                parents.put(p2, p1);
+            }
+        }
+        
+        for (List<String> account: accounts) {
+            String p1 = find(parents, account.get(1));
+            if (!unions.containsKey(p1)) {
+                unions.put(p1, new TreeSet<>());
+            }
+            Set<String> emailSets = unions.get(p1);
+            for (int i = 1; i<account.size(); i++) {
+                emailSets.add(account.get(i));
+            }
+        }
+        
+        List<List<String>> res = new ArrayList<>();
+        for (String p : unions.keySet()) {
+            List<String> emails = new ArrayList(unions.get(p));
+            emails.add(0, owners.get(p));
+            res.add(emails);
+        }
+        return res;
+    }
+    public String find(Map<String, String> parents, String node) {
+        while (!parents.get(node).equals(node)) {
+            parents.put(node, parents.get(parents.get(node))); 
+            node = parents.get(node);
+        }
+        return node;
+    }
+}
