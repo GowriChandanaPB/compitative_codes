@@ -140,3 +140,48 @@ class Solution {
         return aRow[n - 1];        
     }
 }
+
+
+// 7. Container With Most Water
+
+class Solution {
+    public int maxArea(int[] heights) {
+        int l = 0;
+        int r = heights.length - 1;
+        int res = 0;
+
+        while (l < r) {
+            int area = Math.min(heights[l], heights[r]) * (r - l);
+            res = Math.max(res, area);
+            if (heights[l] <= heights[r]) l++;
+            else r--
+        }
+        return res;
+    }
+}
+
+
+// 8. Construct Binary Tree from Preorder and Inorder Traversal
+
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if(inorder.length == 0){
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[0]);
+        int rooti = -1;
+        for(int i=0; i<inorder.length; i++){
+            if(inorder[i] == root.val){
+                rooti = i;
+                break;
+            }
+        }
+        int [] leftpre = Arrays.copyOfRange(preorder, 1, 1 + rooti);
+        int [] rightpre = Arrays.copyOfRange(preorder, 1 + rooti, preorder.length);
+        int [] leftin = Arrays.copyOfRange(inorder, 0, rooti);
+        int [] rightin = Arrays.copyOfRange(inorder, 1 + rooti, inorder.length);
+        root.left = buildTree(leftpre, leftin);
+        root.right = buildTree(rightpre, rightin);
+        return root;
+    }
+}
