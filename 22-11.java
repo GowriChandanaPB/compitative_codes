@@ -53,3 +53,24 @@ class Solution {
         return res;
     }
 }
+
+
+// 3. Subsets
+
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> sset = new ArrayList<>();
+        createSubset(nums, 0, res, sset); return res;        
+    }
+
+    private void createSubset(int[] nums, int idx, List<List<Integer>> res, List<Integer> sset) {
+        if (idx == nums.length) {
+            res.add(new ArrayList<>(sset)); return;
+        }
+        sset.add(nums[idx]);
+        createSubset(nums, idx + 1, res, sset);
+        sset.remove(sset.size() - 1);
+        createSubset(nums, idx + 1, res, sset);
+    }    
+}
