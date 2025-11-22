@@ -124,3 +124,19 @@ class Solution {
         return result;
     }
 }
+
+// 6. Unique Paths
+
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int[] aRow = new int[n];
+        Arrays.fill(aRow, 1);
+        for (int row = 1; row < m; row++) {
+            int[] cRow = new int[n];
+            Arrays.fill(cRow, 1);
+            for (int col = 1; col < n; col++) cRow[col] = cRow[col - 1] + aRow[col];
+            aRow = cRow;
+        }
+        return aRow[n - 1];        
+    }
+}
