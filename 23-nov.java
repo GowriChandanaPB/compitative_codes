@@ -1,32 +1,29 @@
 // 1.  Find All Anagrams in a String
 
 class Solution {
-    public List<Integer> findAnagrams(String s, String t) {
-        List<Integer> res = new LinkedList<>();
-        if(t.length()> s.length()) return res;
-        Map<Character, Integer> map = new HashMap<>();
-        for(char c : t.toCharArray()){
-            map.put(c, map.getOrDefault(c, 0) + 1);
+    public List<Integer> findAnagrams(String s, String p) {
+        int[] pcount = new int[26];
+        int[] scount = new int[26];
+        List<Integer> result = new ArrayList<>();
+
+        for (char c : p.toCharArray()) {
+            pcount[c - 'a']++;
         }
-        int counter = map.size();
-        int begin = 0, end = 0;
-        int len = Integer.MAX_VALUE; 
-        while(end < s.length()){        
-            char c = s.charAt(end);
-            if( map.containsKey(c) ){
-                map.put(c, map.get(c)-1);
-                if(map.get(c) == 0) counter--;
+
+        for (int i = 0; i < s.length(); i++) {
+            scount[s.charAt(i) - 'a']++;
+
+            if (i >= p.length()) {
+                scount[s.charAt(i - p.length()) - 'a']--;
             }
-            end++;
-            while(counter == 0 ){
-                char tempc = s.charAt(begin);
-                if(map.containsKey(tempc)){
-                    map.put(tempc, map.get(tempc) + 1);
-                    if(map.get(tempc) > 0) counter++;
-                }
-                begin++;
+
+            if (Arrays.equals(pcount, scount)) {
+                result.add(i - p.length() + 1);
             }
         }
-        return res;
+        return result;
     }
 }
+
+
+// 2.
