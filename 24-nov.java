@@ -51,3 +51,27 @@ class Solution {
         return water;        
     }
 }
+
+
+// 3. Merge k Sorted Lists
+
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        List<Integer> node = new ArrayList<>();
+        for (ListNode lst : lists) {
+            while (lst != null) {
+                node.add(lst.val);
+                lst = lst.next;
+            }
+        }
+        Collections.sort(node);
+
+        ListNode res = new ListNode(0);
+        ListNode temp = res;
+        for (int i : node) {
+            temp.next = new ListNode(i);
+            temp = temp.next;
+        }
+        return res.next;
+    }
+}
