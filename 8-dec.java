@@ -106,3 +106,30 @@ class Solution {
         return res;
     }
 }
+
+
+
+// 7. Subarray Product Less Than K 
+
+class Solution {
+    public int numSubarrayProductLessThanK(int[] nums, int k) {
+        int res = 0;
+        int sum = nums[0];
+        if(sum<k) res++;
+        int left = 0, right = 1;
+        while(right != nums.length){
+            int val = nums[right];
+            sum = sum*val;
+            if(sum < k) res += right-left+1;
+            else{
+                while(sum>=k){
+                    sum = sum/nums[left];
+                    left++;
+                }
+                res += right-left+1;
+            }
+            right++;
+        }
+        return res;
+    }
+}
