@@ -15,4 +15,4 @@ class Solution {
 
 
 
-// 2.
+// 2. valid palindrome
