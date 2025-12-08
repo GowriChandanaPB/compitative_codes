@@ -1,1 +1,1 @@
-// 1. 
+// 1. remove duplicate from sorted array
