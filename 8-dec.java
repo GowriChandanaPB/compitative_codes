@@ -83,3 +83,26 @@ class Solution {
         }
     }
 }
+
+
+
+// 6.  Squares of a Sorted Array 
+
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int [] res = new int[nums.length];
+        int left = 0, right = nums.length-1, idx = nums.length-1;
+        while(left <= right){
+            int lsq = nums[left] * nums[left];
+            int rsq = nums[right] * nums[right];
+            if(lsq > rsq){
+                res[idx--] = lsq;
+                left++;
+            } else {
+                res[idx--] = rsq;
+                right--;
+            }
+        }
+        return res;
+    }
+}
