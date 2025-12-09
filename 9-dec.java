@@ -13,7 +13,7 @@ class Solution {
 }
 
 
-// Linked List Cycle II
+// 2. Linked List Cycle II
 
 public class Solution {
     public ListNode detectCycle(ListNode head) {
@@ -31,5 +31,21 @@ public class Solution {
             }
         }
         return null;
+    }
+}
+
+
+
+// 3. Middle of the Linked List
+
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head, fast = head;
+        while(fast != null){
+            if(fast.next == null) return slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 }
