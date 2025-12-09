@@ -60,7 +60,6 @@ class Solution {
         while(slow != fast){
             slow = square(slow);
             fast = square(square(fast));
-            if(slow == 1 || fast == 1) return true;
         }
         return slow == 1;
     }
@@ -72,5 +71,26 @@ class Solution {
             n = n/10;
         }
         return res;
+    }
+}
+
+
+
+// 5.  Palindrome Linked List
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        List<Integer> arr = new ArrayList<>();
+        while(head != null){
+            arr.add(head.val);
+            head = head.next;
+        }
+        int left = 0, right = arr.size()-1;
+        while(left < right){
+            if(!arr.get(left).equals(arr.get(right))) return false;
+            left++;
+            right--;
+        }
+        return true;
     }
 }
