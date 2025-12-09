@@ -94,3 +94,28 @@ class Solution {
         return true;
     }
 }
+
+
+
+// 6. Maximum Sum of Distinct Subarrays With Length K
+
+class Solution {
+    public long maximumSubarraySum(int[] nums, int k) {
+        Set<Integer> set = new HashSet<>();
+        int left = 0;
+        long cursum = 0, maxsum = 0;
+        for(int right = 0; right<nums.length; right++){
+            while(set.contains(nums[right]) || set.size() == k){
+                set.remove(nums[left]);
+                cursum -= nums[left];
+                left++;
+            }
+            cursum += nums[right];
+            set.add(nums[right]);
+            if(set.size() == k){
+                maxsum = Math.max(cursum, maxsum);
+            }
+        }
+        return maxsum;
+    }
+}
