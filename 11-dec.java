@@ -19,3 +19,20 @@ class Solution {
         return result;
     }
 }
+
+
+
+// 2. Two Sum IV - Input is a BST
+
+class Solution {
+    public boolean findTarget(TreeNode root, int k) {
+        Set<Integer> set=new HashSet<>();
+        return helper(root,k,set);
+    }
+    public boolean helper(TreeNode node,int k,Set<Integer> seen){
+        if(node==null)  return false;
+        if(seen.contains(k-node.val)) return true;
+        seen.add(node.val);
+        return helper(node.left,k,seen) || helper(node.right,k,seen);
+    }
+}
