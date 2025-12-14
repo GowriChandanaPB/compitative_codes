@@ -68,3 +68,40 @@ class Solution {
         return max_profit;
     }
 }
+
+
+
+// 5. Reverse Nodes in Even Length Groups
+
+class Solution {
+    public ListNode reverseEvenLengthGroups(ListNode head) {
+        if(head.next == null || head.next.next == null) return head;
+        ListNode node = head;
+        int group = 1;
+        while(node != null && node.next != null){
+            group++;
+            int countNode = 0;
+            ListNode temp = node.next;
+            while(temp != null && countNode <group){
+                temp = temp.next;
+                countNode++;
+            }
+            if(countNode % 2 == 0){
+                ListNode cur = node.next, prev = null, nexttt = null;
+                for(int i=0; i<countNode; i++){
+                    nexttt = cur.next;
+                    cur.next = prev;
+                    prev = cur;
+                    cur = nexttt;
+                }
+                ListNode tail = node.next;
+                tail.next = cur;
+                node.next = prev;
+                node = tail;
+            } else {
+                for(int i = 0; i<countNode; i++) node = node.next;
+            }
+        }
+        return head;
+    }
+}
